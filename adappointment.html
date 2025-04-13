@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Appointment Admin Panel</title>
+  <link rel="stylesheet" href="adappointment.css">
+</head>
+<body>
+<!--sidebar start-->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <div class="admin-profile">
+      <img src="doc.png" alt="Admin DP">
+      <p>Admin Name</p>
+    </div>
+    <a href="adminpanel.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="addoctor.html"><i class="fas fa-user-md"></i> Doctors</a>
+    <a href="adpatient.html"><i class="fas fa-procedures"></i> Patients</a>
+    <a href="adappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a href="adbilling.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
+    <a href="adinventory.html"><i class="fas fa-pills"></i> Inventory</a>
+    <a href="adreport.html"><i class="fas fa-chart-line"></i> Reports</a>
+    <a href="adsetting.html"><i class="fas fa-cog"></i> Settings</a>
+  </div>
+  <!--sidebar end-->
+
+  <!--main start-->
+  <div class="main">
+
+    <!--clock conatiner start-->
+    <div id="clock-container">
+      <span id="clock-icon">🕒</span>
+      <span id="current-time"></span>
+    </div>
+     <!--clock conatiner end-->
+
+     <!--searchbox start-->
+     <input type="text" placeholder="Search..." class="search-bar">
+    <!--searchbox end-->
+
+    <h1 style="margin: 20px 0; font-family: 'Poppins', sans-serif;">Appointment Details</h1>
+
+   <!-- Add Appointment Button start-->
+<button id="openAppointmentFormBtn">+Add Appointment</button>
+ <!-- Add Appointment Button end-->
+
+<!-- Appointment Modal -->
+<div id="appointmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeAppointmentModal">&times;</span>
+    <h2>Add New Appointment</h2>
+    <form id="appointmentForm">
+      <label for="appointmentPatient">Patient Name:</label>
+      <input type="text" id="appointmentPatient" required>
+
+      <label for="appointmentDoctor">Doctor Name:</label>
+      <input type="text" id="appointmentDoctor" required>
+
+      <label for="appointmentDate">Date:</label>
+      <input type="date" id="appointmentDate" required>
+
+      <label for="appointmentTime">Time:</label>
+      <input type="time" id="appointmentTime" required>
+
+      <button type="button" id="submitAppointmentBtn" class="submit-btn">Add Appointment</button>
+    </form>
+  </div>
+</div>
+
+    <!--table start-->
+    <table style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif;">
+      <thead style="background-color: #012d5e; color: white;">
+        <tr>
+          <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Patient</th>
+          <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Doctor</th>
+          <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Date</th>
+          <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Time</th>
+          <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="appointmentTableBody">
+        <tr>
+          <td style="padding: 12px;">Ali Raza</td>
+          <td style="padding: 12px;">Dr. Ahmed</td>
+          <td style="padding: 12px;">2025-04-15</td>
+          <td style="padding: 12px;">10:30 AM</td>
+          <td style="padding: 12px;">
+            <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
+            <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!--table end-->
+
+  </div>
+  <!--main end-->
+
+  <script>
+     function updateTime() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  document.getElementById('current-time').textContent = timeString;
+}
+
+setInterval(updateTime, 1000);
+updateTime(); // initial call
+
+// Get DOM Elements
+const openBtn = document.getElementById("openAppointmentFormBtn");
+const modal = document.getElementById("appointmentModal");
+const closeBtn = document.getElementById("closeAppointmentModal");
+
+// Show Modal
+openBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+// Close Modal
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Optional: Close if user clicks outside modal content
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+    document.getElementById('patients-count').innerText = "150";
+
+  </script>
+</body>
+</html>
