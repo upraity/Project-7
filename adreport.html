@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Report Admin Panel</title>
+  <link rel="stylesheet" href="adreport.css">
+</head>
+<body>
+<!--sidebar start-->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <div class="admin-profile">
+      <img src="doc.png" alt="Admin DP">
+      <p>Admin Name</p>
+    </div>
+    <a href="adminpanel.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="addoctor.html"><i class="fas fa-user-md"></i> Doctors</a>
+    <a href="adpatient.html"><i class="fas fa-procedures"></i> Patients</a>
+    <a href="adappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a href="adbilling.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
+    <a href="adinventory.html"><i class="fas fa-pills"></i> Inventory</a>
+    <a href="adreport.html"><i class="fas fa-chart-line"></i> Reports</a>
+    <a href="adsetting.html"><i class="fas fa-cog"></i> Settings</a>
+  </div>
+  <!--sidebar end-->
+
+  <!--main start-->
+  <div class="main">
+
+    <!--clock conatiner start-->
+    <div id="clock-container">
+      <span id="clock-icon">🕒</span>
+      <span id="current-time"></span>
+    </div>
+     <!--clock conatiner end-->
+    
+     <h1 style="margin: 20px 0; font-family: 'Poppins', sans-serif;">Hospital Reports</h1>
+
+    <!--search and Export Controls start-->
+<div class="report-controls">
+
+  <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+
+  <div class="export-buttons">
+    <button onclick="exportToExcel()">Export to Excel</button>
+    <button onclick="exportToPDF()">Export to PDF</button>
+  </div>
+</div>
+<!--search and Export Controls end-->
+
+<!--report card start-->
+<div class="report-cards">
+  <div class="report-card">
+    <i class="fas fa-user-injured icon"></i>
+    <h3>Total Patients</h3>
+    <p>150</p>
+  </div>
+  <div class="report-card">
+    <i class="fas fa-calendar-check icon"></i>
+    <h3>Total Appointments</h3>
+    <p>87</p>
+  </div>
+  <div class="report-card">
+    <i class="fas fa-rupee-sign icon"></i>
+    <h3>Revenue Generated</h3>
+    <p>₹1,25,000</p>
+  </div>
+  <div class="report-card">
+    <i class="fas fa-pills icon"></i>
+    <h3>Inventory Items</h3>
+    <p>320</p>
+  </div>
+</div>
+    <!--report card end-->
+
+    <!--add Report Button start-->
+    <button class="add-report-btn" id="openReportFormBtn">+ Add Report</button>
+
+ <!--add Report Button end-->
+
+ <!--modal popup start-->
+<div id="reportModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeReportModal">&times;</span>
+    <h2>Add New Report</h2>
+    <form id="reportForm">
+      <label for="reportTitle">Report Title:</label>
+      <input type="text" id="reportTitle" required>
+
+      <label for="reportDate">Date:</label>
+      <input type="date" id="reportDate" required>
+
+      <label for="reportPatient">Patient Name:</label>
+      <input type="text" id="reportPatient" required>
+
+      <label for="reportDescription">Description:</label>
+      <textarea id="reportDescription" rows="3" required></textarea>
+
+      <label for="reportStatus">Status:</label>
+      <select id="reportStatus" required>
+        <option value="">Select Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+        <option value="In Progress">In Progress</option>
+      </select>
+
+      <button type="button" id="submitReportBtn" class="submit-btn">Add Report</button>
+    </form>
+  </div>
+</div>
+<!--modal popup end-->
+
+ 
+
+<!--report table start-->
+<div class="report-table-section">
+  <h2 style="font-family: 'Poppins', sans-serif; margin-bottom: 15px;">Recent Appointments</h2>
+  <table style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif;">
+    <thead style="background-color: #012d5e; color: white;">
+      <tr>
+        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Patient</th>
+        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Doctor</th>
+        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Date</th>
+        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Status</th>
+        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="reportTableBody">
+      <tr>
+        <td style="padding: 12px;">Rahul Sharma</td>
+        <td style="padding: 12px;">Dr. Mehta</td>
+        <td style="padding: 12px;">2025-04-10</td>
+        <td style="padding: 12px;">Completed</td>
+        <td style="padding: 12px;">
+          <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
+          <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Priya Verma</td>
+        <td style="padding: 12px;">Dr. Rao</td>
+        <td style="padding: 12px;">2025-04-09</td>
+        <td style="padding: 12px;">Pending</td>
+        <td style="padding: 12px;">
+          <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
+          <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 12px;">Alok Singh</td>
+        <td style="padding: 12px;">Dr. Khan</td>
+        <td style="padding: 12px;">2025-04-08</td>
+        <td style="padding: 12px;">Cancelled</td>
+        <td style="padding: 12px;">
+          <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
+          <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <!--report table end-->
+    </div>
+  <!--main end-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  function updateTime() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  document.getElementById('current-time').textContent = timeString;
+}
+
+setInterval(updateTime, 1000);
+updateTime(); // initial call
+
+
+  // Search Filter
+  function filterTable() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("tbody tr");
+    rows.forEach(row => {
+      row.style.display = row.innerText.toLowerCase().includes(input) ? "" : "none";
+    });
+  }
+
+  // Export to Excel
+  function exportToExcel() {
+    const table = document.querySelector("table");
+    const wb = XLSX.utils.table_to_book(table, { sheet: "Reports" });
+    XLSX.writeFile(wb, "Hospital_Report.xlsx");
+  }
+
+  // Export to PDF
+  async function exportToPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text("Hospital Reports", 14, 15);
+    doc.autoTable({ html: 'table', startY: 20 });
+    doc.save("Hospital_Report.pdf");
+  }
+
+  // Modal functionality
+  const reportModal = document.getElementById("reportModal");
+  const openReportFormBtn = document.getElementById("openReportFormBtn");
+  const closeReportModal = document.getElementById("closeReportModal");
+
+  // Open modal
+  openReportFormBtn.onclick = function () {
+    reportModal.style.display = "block";
+  }
+
+  // Close modal when 'X' is clicked
+  closeReportModal.onclick = function () {
+    reportModal.style.display = "none";
+  }
+
+  // Close modal when clicking outside the modal
+  window.onclick = function (event) {
+    if (event.target === reportModal) {
+      reportModal.style.display = "none";
+    }
+  }
+</script>
+
+
+</body>
+</html>
