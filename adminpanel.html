@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="adminpanel.css">
+</head>
+<body>
+
+<!--sidebar start-->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <div class="admin-profile">
+      <img src="doc.png" alt="Admin DP">
+      <p>Admin Name</p>
+    </div>
+    <a href="adminpanel.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="addoctor.html"><i class="fas fa-user-md"></i> Doctors</a>
+    <a href="adpatient.html"><i class="fas fa-procedures"></i> Patients</a>
+    <a href="adappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a href="adbilling.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
+    <a href="adinventory.html"><i class="fas fa-pills"></i> Inventory</a>
+    <a href="adreport.html"><i class="fas fa-chart-line"></i> Reports</a>
+    <a href="adsetting.html"><i class="fas fa-cog"></i> Settings</a>
+  </div>
+  <!--sidebar end-->
+
+<!--main start-->
+    <div class="main">
+      
+      <!--clock conatiner start-->
+      <div id="clock-container">
+        <span id="clock-icon">🕒</span>
+        <span id="current-time"></span>
+      </div>
+       <!--clock conatiner end-->
+      
+        <!-- Welcome Section start-->
+        <div class="welcome-section">
+          <h2>Welcome to <span style="color: #012d5e; letter-spacing: 1px;">DEESHUKA CARE HOSPITAL,</span> Admin!</h2>
+          <p>Here’s a quick overview of today’s hospital activity.</p>
+        </div>
+        <!-- Welcome Section end-->
+
+         <!--searchbox start-->
+        <input type="text" placeholder="Search..." class="search-bar">
+        <!--searchbox end-->
+
+        <h1 style="color: #001524; letter-spacing: 1px;">Dashboard</h1>
+
+      <!--card container start-->
+        <div class="card-container">
+            <div class="card">
+              <i class="fas fa-users"></i>
+              <h3>Total Patients</h3>
+              <p>124</p>
+            </div>
+            <div class="card">
+              <i class="fas fa-user-md"></i>
+              <h3>Total Doctors</h3>
+              <p>27</p>
+            </div>
+            <div class="card">
+              <i class="fas fa-calendar-check"></i>
+              <h3>Appointments Today</h3>
+              <p>34</p>
+            </div>
+            <div class="card">
+              <i class="fas fa-bed"></i>
+                <h3>Available Beds</h3>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 70%;"></div>
+                </div>
+                <p>15 Beds Available</p>
+              </div>
+              <div class="card">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Emergency Cases</h3>
+                <span class="tag critical">Critical</span>
+                <p>5 Cases</p>
+              </div>
+        </div>
+        <!--card container end-->
+
+    </div>
+    <!--main end-->
+      
+</body>
+<script>
+   function updateTime() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  document.getElementById('current-time').textContent = timeString;
+}
+
+setInterval(updateTime, 1000);
+updateTime(); // initial call
+
+    document.getElementById('patients-count').innerText = "150";
+
+  </script>
+</html>
