@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
+  <title>Profile - Doctor Panel</title>
+  <link rel="stylesheet" href="docprofile.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Doctor Panel</h2>
+    <div class="admin-profile">
+      <img src="doc.png" alt="Doctor DP">
+      <p>Doctor Name</p>
+    </div>
+    <a href="doctorpanel.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="docappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a href="docpatient.html"><i class="fas fa-procedures"></i> My Patients</a>
+    <a href="docprescription.html"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</a>
+    <a href="docprofile.html" class="active"><i class="fas fa-user-cog"></i> Profile</a>
+    <a href="doclogout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Clock & Toggle -->
+    <div class="top-right-controls">
+      <div id="clock-container">
+        <span id="clock-icon">🕒</span>
+        <span id="current-time">--:--</span>
+      </div>
+      <div class="theme-toggle">
+        <label>
+          <input type="checkbox" id="darkModeToggle"> Dark Mode
+        </label>
+      </div>
+    </div>
+
+    <!-- Welcome -->
+    <div class="welcome-section">
+      <h2>Profile - <span class="hospital-name">DEESHUKA CARE HOSPITAL</span></h2>
+      <p>Manage your profile details here.</p>
+    </div>
+
+    <div class="profile-container">
+      <div class="profile-card">
+        <img src="doc.png" alt="Doctor Profile" class="profile-image">
+        <h3>Dr. Amit Verma</h3>
+        <p>Specialist: Cardiologist</p>
+        <p>Email: amit.verma@example.com</p>
+        <p>Phone: +91-9876543210</p>
+        <button class="edit-btn"><i class="fas fa-edit"></i> Edit Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Clock
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('current-time').textContent = timeString;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Dark Mode
+    document.getElementById('darkModeToggle').addEventListener('change', function () {
+      document.body.classList.toggle('dark', this.checked);
+    });
+  </script>
+</body>
+</html>
