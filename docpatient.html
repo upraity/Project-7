@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>My Patient Doctor Panel</title>
+  <link rel="stylesheet" href="docpatient.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Doctor Panel</h2>
+    <div class="admin-profile">
+      <img src="doc.png" alt="Doctor DP">
+      <p>Doctor Name</p>
+    </div>
+    <a href="doctorpanel.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="docappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a href="docpatient.html" class="active"><i class="fas fa-procedures"></i> My Patients</a>
+    <a href="docprescription.html"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</a>
+    <a href="docprofile.html"><i class="fas fa-user-cog"></i> Profile</a>
+    <a href="doclogout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Clock & Toggle -->
+    <div class="top-right-controls">
+      <div id="clock-container">
+        <span id="clock-icon">🕒</span>
+        <span id="current-time">--:--</span>
+      </div>
+      <div class="theme-toggle">
+        <label>
+          <input type="checkbox" id="darkModeToggle"> Dark Mode
+        </label>
+      </div>
+    </div>
+
+    <!-- Welcome -->
+    <div class="welcome-section">
+      <h2>My Patients - <span class="hospital-name">DEESHUKA CARE HOSPITAL</span></h2>
+      <p>Below is the list of patients under your care.</p>
+    </div>
+
+    <input type="text" placeholder="Search patients..." class="search-bar">
+    <h1>Patients</h1>
+
+    <div class="card-container">
+      <div class="card">
+        <i class="fas fa-users"></i>
+        <h3>Total Patients</h3>
+        <p>30</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-user-check"></i>
+        <h3>Active</h3>
+        <p>25</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-user-times"></i>
+        <h3>Discharged</h3>
+        <p>5</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 30px;">Patient List</h2>
+    <table class="doctor-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Condition</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Anjali Singh</td>
+          <td>28</td>
+          <td>Female</td>
+          <td>Fever</td>
+          <td><span class="tag">Admitted</span></td>
+        </tr>
+        <tr>
+          <td>Rahul Sharma</td>
+          <td>42</td>
+          <td>Male</td>
+          <td>Diabetes</td>
+          <td><span class="tag pending">Outpatient</span></td>
+        </tr>
+        <tr>
+          <td>Priya Desai</td>
+          <td>34</td>
+          <td>Female</td>
+          <td>Review</td>
+          <td><span class="tag">Under Observation</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Clock
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('current-time').textContent = timeString;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Dark Mode
+    document.getElementById('darkModeToggle').addEventListener('change', function () {
+      document.body.classList.toggle('dark', this.checked);
+    });
+  </script>
+</body>
+</html>
