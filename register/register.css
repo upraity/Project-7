@@ -294,7 +294,7 @@ nav ul li a {
     align-items: center;
 }
 
-/* .container {
+.container {
     width: 80%;
     background: white;
     padding: 20px;
@@ -304,7 +304,7 @@ nav ul li a {
     box-shadow: 0 0 10px rgb(2 62 138);
     text-align: center;
 
-} */
+}
 .tabs {
     display: flex;
     justify-content: space-between;
