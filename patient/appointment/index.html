@@ -13,7 +13,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url('http://localhost:3000/images/landingimg.jpg');
+                background-image: url('https://upraity.github.io/Project-7/images/landingimg.jpg');
                 background-size: cover;
                 background-position: center;
                 filter: blur(10px);
@@ -38,7 +38,7 @@
                 justify-content: center;
                 background-size: cover;
                 background-blend-mode: lighten;
-                background-image: url("http://localhost:3000/images/home1.jpg");
+                background-image: url("https://upraity.github.io/Project-7/images/home.jpg");
             }
             .l {
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -675,12 +675,12 @@
                 <div class="l">
                     <form id="uploadform" action="" method="POST" enctype="multipart/form-data">
                         <input type="hidden" value="<?php echo $sno?>" name="sno">
-                        <p><strong>Full Name:</strong> <input type="text" value="<?php echo $name;?>" name="name" placeholder="Enter your full name" required></p>
-                        <p><strong>Mobile Number:</strong> <input type="tel" value="<?php echo $number;?>" name="number" placeholder="Enter your mobile number" required></p>
-                        <p><strong>Email:</strong> <input type="email" value="<?php echo $email;?>" name="email" placeholder="Enter your email id" required></p>
-                        <p><strong>Age:</strong> <input type="text" value="<?php echo $age;?>" name="age" placeholder="Enter your age" readonly required></p>
-                        <p><strong>Weight (in Kg):</strong> <input type="tel" value="<?php echo $weight;?>" name="weight" placeholder="Enter your weight" required></p>   
-                        <p><strong>Gender:</strong><input type="text" value="<?php echo $gender;?>" name="gender" placeholder="Enter your gender" readonly required></p>
+                        <p><strong>Full Name:</strong> <input type="text" value="" name="name" placeholder="Enter your full name" required></p>
+                        <p><strong>Mobile Number:</strong> <input type="tel" value="" name="number" placeholder="Enter your mobile number" required></p>
+                        <p><strong>Email:</strong> <input type="email" value="" name="email" placeholder="Enter your email id" required></p>
+                        <p><strong>Age:</strong> <input type="text" value="" name="age" placeholder="Enter your age" readonly required></p>
+                        <p><strong>Weight (in Kg):</strong> <input type="tel" value="" name="weight" placeholder="Enter your weight" required></p>   
+                        <p><strong>Gender:</strong><input type="text" value="" name="gender" placeholder="Enter your gender" readonly required></p>
                         <p>
                             <strong>Problem:</strong><br>
                             <textarea name="pdesc" rows="5" placeholder="Describe your problem and symptoms..." required></textarea>
@@ -688,20 +688,10 @@
                         <p><strong>Dr. Name:</strong><br>
                         <select style="width:100%; text-align:center;" name="drid" required>
                         <option value="" disabled selected>select</option>
-                            <?php
-                                $query = "select * from dr_details";
-                                $answer = mysqli_query($conn, $query);
-                                if ($answer && mysqli_num_rows($answer) > 0) {
-                                    while($row = mysqli_fetch_assoc($answer)){
-                                        $drname = $row['dr_fullName'];
-                                        $drid = $row['dr_id'];
-                                        $drspecialist = $row['dr_specialist'];
-                                        echo'
-                                            <option value="'.$drid.'">'.$drname.' ('.$drspecialist.')</option>
-                                        ';
-                                    }
-                                }
-                            ?>
+                        <option value="dr1">Dr. Sheela Devi (Cathologist)</option>
+                        <option value="dr1">Dr. Suman Jasswal (Orthologist)</option>
+                        <option value="dr1">Dr. Kunal Shrivastav (Nerologist)</option>
+                                       
                         </select>
                         </p><br>
                         <div id="uploadBox">
@@ -709,10 +699,10 @@
                             <input type="file" id="fileInput" name="file[]" multiple accept="image/*,.pdf">
                             <div id="fileList"></div>
                         </div>
-                        <p><strong>Address:</strong> <input type="text" value="<?php echo $address;?>" name="address" placeholder="Enter your address" required></p>   
-                        <p><strong>City:</strong> <input type="text" value="<?php echo $city;?>" name="city" placeholder="Enter your city" required></p>     
-                        <p><strong>Pin Code:</strong> <input type="text" value="<?php echo $pincode;?>" name="pincode" placeholder="Enter your pincode" required></p>
-                        <p><strong>State:</strong> <input type="text" value="<?php echo $state;?>" name="state" placeholder="Enter your state" required></p> 
+                        <p><strong>Address:</strong> <input type="text" value="" name="address" placeholder="Enter your address" required></p>   
+                        <p><strong>City:</strong> <input type="text" value="" name="city" placeholder="Enter your city" required></p>     
+                        <p><strong>Pin Code:</strong> <input type="text" value="" name="pincode" placeholder="Enter your pincode" required></p>
+                        <p><strong>State:</strong> <input type="text" value="" name="state" placeholder="Enter your state" required></p> 
                         <button class="details-btn" name="click">Book</button>
                     </form>
                 </div>
