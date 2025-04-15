@@ -1,0 +1,817 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Appointment</title>
+        <style>
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('http://localhost:3000/images/landingimg.jpg');
+                background-size: cover;
+                background-position: center;
+                filter: blur(10px);
+                z-index: -1;
+            }
+            .container1 {
+                display: flex;
+                max-width: 100%;
+                width: calc(100% - 50px);
+                margin-left:58px;
+            }
+            .right::before{
+                opacity: 0.3;
+            }
+            .right {
+                flex: 1;
+                gap:50px;
+                padding: 20px;
+                display: flex;
+                min-width:200px;
+                align-items: center;
+                justify-content: center;
+                background-size: cover;
+                background-blend-mode: lighten;
+                background-image: url("http://localhost:3000/images/home1.jpg");
+            }
+            .l {
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                margin-top: 8%;
+                font-size: 16px;
+                padding: 30px;
+                background: rgba(255, 255, 255, 0.178);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+            }
+            .l input{
+                padding:10px;
+                margin:10px 0;
+                width:100%;
+                min-width:250px;
+                border: none;
+                border-radius:8px;
+            }
+            a {
+                color: #007bff;
+                text-decoration: none;
+                background-color: transparent;
+            }
+            textarea[name="pdesc"] {
+                width: 100%;
+                max-width: 600px;
+                max-height: 151px;
+                min-height: 151px;
+                height: auto;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                font-size: 16px;
+                font-family: Arial, sans-serif;
+                resize: vertical;
+                box-sizing: border-box;
+                transition: 0.3s;
+            }
+
+            textarea[name="pdesc"]:focus {
+                border-color: #007BFF;
+                outline: none;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+            }
+
+            .details-btn {
+                background: #3498db;
+                color: white;
+                border: none;
+                padding: 10px;
+                width: 100%;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 10px;
+            }
+            .details-btn:hover {
+                background: #2980b9;
+            }
+            #uploadBox {
+                border: 2px dashed #aaa;
+                padding: 20px;
+                width: 300px;
+                text-align: center;
+                margin: 50px auto;
+                border-radius: 10px;
+            }
+            #fileList {
+                margin-top: 20px;
+                text-align: left;
+            }
+            /* .fileItem {
+                margin: 5px 0;
+                padding: 5px;
+                font-size: 14px;
+                line-height: 1.5;
+                } */
+
+
+
+            @media (max-width: 600px) {
+                textarea[name="pdesc"] {
+                width: 100%;
+                }
+                .right{
+                    justify-content: center;
+                }
+                .l{
+                    /* margin-left:20px; */
+                }
+            }
+        </style>
+          <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            /* display: flex; */
+            /* min-height: 100vh; */
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #1E3A5F;
+            color: white;
+            height: 100%;
+            padding: 20px;
+            position: fixed;
+            transition: width 0.3s;
+            z-index: 10;
+            overflow: scroll;   
+        scrollbar-width: none;  
+        -ms-overflow-style: none;
+        }
+
+        .sidebar.close {
+            width: 70px;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar.close .logo {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .sidebar.close .logo img,
+        .sidebar.close .logo span {
+            display: none;
+        }
+
+        .sidebar .logo img {
+            width: 125px;
+            height: 125px;
+            border-radius: 10px;
+        }
+
+        .sidebar .logo span {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .sidebar .logo i {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .menu {
+            margin: 20px -10px;
+        }
+
+        .menu li {
+            list-style: none;
+            padding: 15px;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+            flex-direction: column;  
+            align-items: flex-start;
+        }
+
+        .menu li:hover {
+            background: #3A4D6F;
+            border-radius: 10px;
+            
+        }
+
+        .menu i {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .menu span {
+            transition: opacity 0.3s;
+        }
+
+        .sidebar.close .menu span {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 50px;
+
+            padding: 20px;
+            transition: margin-left 0.3s;
+            /* width: calc(100% - 30px); */
+        }
+
+        .sidebar.close + .content {
+            margin-left: 70px;
+            width: calc(100% - 70px);
+        }
+
+        .mainpage {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            /* padding: 20px; */
+        }
+
+        .container {
+            flex: 1 1 65%;
+            min-width: 300px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* .container-appointment {
+            flex: 1 1 30%;
+            min-width: 280px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow-x: hidden;
+            height:00px;
+        } */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        select {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calendar-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .calendar-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .calendar {
+            display: inline-flex;
+            gap: 10px;
+        }
+
+        .day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 70px;
+            border-radius: 10px;
+            background: #f0f0f0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .day:hover {
+            background: #e0e0e0;
+        }
+
+        .day.active {
+            background: #4caf50;  /* Today's date highlight */
+            color: white;
+        }
+
+        .day span {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .day small {
+            font-size: 14px;
+            color: #555;
+        }
+
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+            }
+
+            .mainpage {
+                flex-direction: row;
+            }
+
+            .container {
+                flex: 1 1 60%;
+            }
+
+            .container-appointment {
+                flex: 1 1 35%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                /* width: 70px; */
+                overflow: hidden;
+            }
+
+            .content {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+            }
+
+            .mainpage {
+                flex-direction: column;
+            }
+
+            .container, .container-appointment {
+                width: 100%;
+            }
+            .day{
+                width:60px;
+                height:80px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .day {
+                width: 55px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .day{
+                width:55px;
+                height:70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                /* width: 0; */
+                overflow: hidden;
+            }
+
+            .sidebar.close {
+                /* width: 0; */
+            }
+
+            .content {
+                /* margin-left: 35px; */
+                width: 100%;
+            }
+        }
+        .fas{
+            font-size:25px;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+         /* Chatbot Icon */
+    .chat-icon {
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: 0.3s;
+            font-size: 25px;
+        }
+
+        .chat-icon:hover {
+            background: #0056b3;
+        }
+
+        .chat-icon svg {
+            width: 35px;
+            height: 35px;
+            fill: #fff;
+        }
+
+        /* Chatbox Container */
+        .chatbox {
+            position: fixed;
+            right: -400px;
+            bottom: 0;
+            width: 350px;
+            height: 80vh;
+            background: #f1f1f1;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s;
+            z-index: 999;
+            border-radius: 10px 0 0 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Chat Body */
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Chat Footer */
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            background: #f1f1f1;
+            border-top: 1px solid #ccc;
+        }
+
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .chat-footer button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .chat-footer button:hover {
+            background: #0056b3;
+        }
+
+        /* Message Styles */
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 15px;
+            line-height: 1.4;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .bot-message {
+            background: #e0e0e0;
+            color: #000;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        .submenu{
+            margin-top:10px;
+        }
+        /* .fixed{
+            position: fixed;
+        } */
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .chatbox {
+                width: 100%;
+                height: 100vh;
+                right: -100%;
+                border-radius: 0;
+            }
+        }
+        .submenu {
+            padding-left: 30px;
+            display: none; 
+        }
+       
+        .hover:hover .submenu {
+            display: block;
+        }
+    </style>
+    </head>
+    <body>
+      
+<!-- Sidebar -->
+<div class="sidebar close" id="sidebar">
+<i class="fas fa-bars" id="toggle"></i>
+    <div class="logo">
+        <img src="https://upraity.github.io/Project-7/images/default.jpg" alt="Logo">
+        <span><?php echo $name;?></span>
+    </div>
+    <ul class="menu">
+        <a href="https://upraity.github.io/Project-7/patient/profile">
+            <li>
+                <i class="fas fa-user"></i> <span>Profile</span>
+            </li>
+        </a>
+        <a href="https://upraity.github.io/Project-7/patient/dashboard">
+            <li>
+                <i class="fas fa-home"></i> <span>Dashboard</span>
+            </li>
+        </a>
+        <a href="https://upraity.github.io/Project-7/patient/doctors">
+            <li>
+            <i class="fa-solid fa-stethoscope"></i> <span>Doctors</span>
+            </li>
+        </a>
+        <a href="https://upraity.github.io/Project-7/patient/appointment">
+            <li>
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Appointment</span>
+            </li>
+        </a>
+        <a href="https://upraity.github.io/Project-7/patient/messages">
+            <li>
+                <i class="fas fa-envelope"></i> <span>Messages</span>
+            </li>
+        </a>
+        <!-- <a href="http://localhost:3000/patient/medicines">
+            <li>
+            <i class="fa-solid fa-capsules"></i> <span>Medicines</span>
+            </li>
+        </a> -->
+
+        <li class="hover">
+            <a href="https://upraity.github.io/Project-7/patient/history">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </a>
+             <!-- Sub-navbar -->
+            <ul class="submenu">
+                <li>
+                    <a href="https://upraity.github.io/Project-7/patient/history/appointment">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://upraity.github.io/Project-7/patient/history/payment">
+                        <i class="fa-regular fa-money-bill-wave"></i>
+                        <span>Payment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://upraity.github.io/Project-7/patient/history/Medical">
+                        <i class="fa-solid fa-suitcase-medical"></i>
+                        <span>Medical</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <a href="https://upraity.github.io/Project-7/logout">
+            <li>
+                <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+            </li>
+        </a>
+    </ul>
+</div>
+
+<!-- Content -->
+
+
+<!-- Chatbot Icon -->
+<div class="chat-icon" onclick="toggleChat()">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 1 0 7.745 17.032l2.09 1.394a1 1 0 0 0 1.521-.848V12a10 10 0 0 0-10-10zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8zm-1-5h2v2h-2zm0-8h2v6h-2z"/>
+    </svg> -->
+    <i class="fas fa-comments"></i>
+</div>
+<!-- Chatbox -->
+<div class="chatbox" id="chatbox">
+    <div class="chat-header">Chatbot</div>
+    <div class="chat-body" id="chat-body">
+        <div class="message bot-message">Hello! How can I help you today?</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+        <div class="container1">
+            <div class="right">
+                <div class="l">
+                    <form id="uploadform" action="" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" value="<?php echo $sno?>" name="sno">
+                        <p><strong>Full Name:</strong> <input type="text" value="<?php echo $name;?>" name="name" placeholder="Enter your full name" required></p>
+                        <p><strong>Mobile Number:</strong> <input type="tel" value="<?php echo $number;?>" name="number" placeholder="Enter your mobile number" required></p>
+                        <p><strong>Email:</strong> <input type="email" value="<?php echo $email;?>" name="email" placeholder="Enter your email id" required></p>
+                        <p><strong>Age:</strong> <input type="text" value="<?php echo $age;?>" name="age" placeholder="Enter your age" readonly required></p>
+                        <p><strong>Weight (in Kg):</strong> <input type="tel" value="<?php echo $weight;?>" name="weight" placeholder="Enter your weight" required></p>   
+                        <p><strong>Gender:</strong><input type="text" value="<?php echo $gender;?>" name="gender" placeholder="Enter your gender" readonly required></p>
+                        <p>
+                            <strong>Problem:</strong><br>
+                            <textarea name="pdesc" rows="5" placeholder="Describe your problem and symptoms..." required></textarea>
+                        </p><br>
+                        <p><strong>Dr. Name:</strong><br>
+                        <select style="width:100%; text-align:center;" name="drid" required>
+                        <option value="" disabled selected>select</option>
+                            <?php
+                                $query = "select * from dr_details";
+                                $answer = mysqli_query($conn, $query);
+                                if ($answer && mysqli_num_rows($answer) > 0) {
+                                    while($row = mysqli_fetch_assoc($answer)){
+                                        $drname = $row['dr_fullName'];
+                                        $drid = $row['dr_id'];
+                                        $drspecialist = $row['dr_specialist'];
+                                        echo'
+                                            <option value="'.$drid.'">'.$drname.' ('.$drspecialist.')</option>
+                                        ';
+                                    }
+                                }
+                            ?>
+                        </select>
+                        </p><br>
+                        <div id="uploadBox">
+                            <h3>Upload Files</h3>
+                            <input type="file" id="fileInput" name="file[]" multiple accept="image/*,.pdf">
+                            <div id="fileList"></div>
+                        </div>
+                        <p><strong>Address:</strong> <input type="text" value="<?php echo $address;?>" name="address" placeholder="Enter your address" required></p>   
+                        <p><strong>City:</strong> <input type="text" value="<?php echo $city;?>" name="city" placeholder="Enter your city" required></p>     
+                        <p><strong>Pin Code:</strong> <input type="text" value="<?php echo $pincode;?>" name="pincode" placeholder="Enter your pincode" required></p>
+                        <p><strong>State:</strong> <input type="text" value="<?php echo $state;?>" name="state" placeholder="Enter your state" required></p> 
+                        <button class="details-btn" name="click">Book</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        fileInput.addEventListener('change', function () {
+            // Check max file limit
+            if (fileInput.files.length > 5) {
+                alert("Aap maximum 5 files hi upload kar sakte hain.");
+                fileInput.value = ""; // Clear the file input
+                fileList.innerHTML = ""; // Clear file list
+                return;
+            }
+
+            // Show selected files
+            fileList.innerHTML = ""; // Clear previous list
+            const files = fileInput.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                let fileName = file.name;
+
+                // Truncate file name if longer than 15 characters
+                if (fileName.length > 15) {
+                    fileName = fileName.substring(0, 15) + "...";
+                }
+
+                const li = document.createElement("div");
+                li.className = "fileItem";
+                li.textContent = `${i + 1}.  ${fileName} (${(file.size / 1024).toFixed(2)} KB)`;
+                fileList.appendChild(li);
+            }
+
+        });
+    </script>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    e.preventDefault();
+                    alert('Only image or PDF files are allowed!');
+                }
+            }
+        });
+    </script>
+  
+<script>
+
+// Toggle Chatbox
+function toggleChat() {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.style.right = chatbox.style.right === '0px' ? '-100%' : '0px';
+    }
+
+    // Send Message
+    function sendMessage() {
+        const input = document.getElementById('user-input');
+        const message = input.value.trim();
+
+        if (message) {
+            const chatBody = document.getElementById('chat-body');
+
+            // Add user message (right side)
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.textContent = message;
+            chatBody.appendChild(userMessage);
+
+            // Simulate bot response (left side)
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.textContent = 'Thanks for your message!';
+                chatBody.appendChild(botMessage);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+
+            input.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    }
+
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.getElementById('toggle');
+
+
+    // Sidebar toggle functionality
+    toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('close');
+    });
+</script>
+
+</html>
