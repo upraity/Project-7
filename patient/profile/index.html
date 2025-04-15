@@ -153,7 +153,7 @@
         <?php include'../header.php';?>
         <div class="container1">
             <div class="left">
-                <img class="profile-pic" src="http://localhost:3000/patient/images/<?php echo $user_img;?>" alt="Profile Picture">
+                <img class="profile-pic" src="https://upraity.github.io/Project-7/images/default.jpg" alt="Profile Picture">
                 <br>
                 <div class="edit-btn">
                     <button onclick="openUploadPopup()">Edit</button>
@@ -216,7 +216,7 @@
                 <div class="popup-close" onclick="closeUploadPopup()">✖</div>
                 <h3>Update Profile Picture</h3>
                 <form method="POST" action="" enctype="multipart/form-data">
-                    <img id="preview-avatar" src="http://localhost:3000/patient/images/default.jpg" alt="Preview">
+                    <img id="preview-avatar" src="https://upraity.github.io/Project-7/images/default.jpg" alt="Preview">
                     <input type="file" id="image-input" name="image" accept="image/*">
                     <button name="picClick" onclick="applyNewAvatar()">Update</button>
                 </form>
