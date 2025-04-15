@@ -30,54 +30,52 @@
 
     <!--container start-->
     <div class="regcontent">
-        <!--leftside image start-->
         <div class="empt">
             <div class="img-stack">
-                <img src="../images/Doctor.avif"  class="img1">
-                <img src="../images/doctor2.webp"  class="img2">
+                <img src="../images/Doctor.png" class="img1">
+                <img src="../images/doctor2.png" class="img2">
             </div>
         </div>
-         <!--leftside image end-->
-        
-        <!--right side form start-->
         <div class="fill">
             <div class="container">
-        <div class="tabs">
-            <div class="tab active" onclick="showForm('patient')">Patient</div>
-            <div class="tab" onclick="showForm('doctor')">Doctor</div>
-            <div class="tab" onclick="showForm('admin')">Admin</div>
+                <div class="formdiv">
+                <div class="tabs">
+                    <div class="tab active" onclick="showForm('patient')">Patient</div>
+                    <div class="tab" onclick="showForm('doctor')">Doctor</div>
+                    <!-- <div class="tab" onclick="showForm('admin')">Admin</div> -->
+                </div>
+                
+                <form id="patient" class="form active" action="" method="POST" enctype="multipart/form-data">
+                    <h2>Patient Registration</h2>
+                    <input type="text" placeholder="Full Name" name="name" required>
+                    <input type="email" placeholder="Email" name="email" required>
+                    <input type="password" placeholder="Password" name="password" minlength="5" maxlength="10" required>
+                    <input type="tel" placeholder="Contact Number" name="contact" maxlength="10" required>
+                    <!-- <input type="text" placeholder="Reason for Visit" name="disease" required> -->
+                    <p>Already have an account <a class="link" href="/login">Login</a></p>
+                    <button type="submit" name="patientclick">Register</button>
+                </form>
+                
+                <form id="doctor" class="form" action="" method="POST" enctype="multipart/form-data">
+                    <h2>Doctor Registration</h2>
+                    <input type="text" placeholder="Full Name" name="name" required>
+                    <input type="email" placeholder="Email" name="email" required>
+                    <input type="text" placeholder="Specialization" name="special" required>
+                    <input type="password" placeholder="Password" name="password" required>
+                    <p>Already have an account <a class="link" href="/login">Login</a></p>
+                    <button type="submit" name="doctorclick">Register</button>
+                </form>
+                
+                <!-- <form id="admin" class="form">
+                    <h2>Admin Registration</h2>
+                    <input type="text" placeholder="Username" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Register</button>
+                </form> -->
+                </div>
+            </div> 
         </div>
-        
-        <form id="patient" class="form active">
-            <h2 style="letter-spacing: 3px; font-size: 20px; color: #001524;">Patient Registration</h2>
-            <input type="text" placeholder="Full Name" name="name" required>
-            <input type="email" placeholder="Email" name="email" required>
-            <input type="password" placeholder="Password" name="password" required>
-            <input type="tel" placeholder="Contact Number" name="contact" required>
-            <input type="text" placeholder="Reason for Visit" name="disease" required>
-            <button type="submit">Register</button>
-        </form>
-        
-        <form id="doctor" class="form">
-            <h2 style="letter-spacing: 3px; font-size: 20px; color: #001524;">Doctor Registration</h2>
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="text" placeholder="Specialization" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-        
-        <form id="admin" class="form">
-            <h2 style="letter-spacing: 3px; font-size: 20px; color: #001524;">Admin Registration</h2>
-            <input type="text" placeholder="Username" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-            </div>
-            <!--right side form end-->
-
     </div>
        <!--container end-->
        <script>
