@@ -118,13 +118,13 @@ nav ul li a {
 
 .fill{
     width: 80%;
-    height: 85vh;
+/*     height: 85vh; */
     float: left;
 }
 
 .container {
     width: 95%;
-    height: 90%;
+/*     height: 90%; */
    background-color: white;
     padding: 20px;
     float: right;
