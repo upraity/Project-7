@@ -409,6 +409,8 @@ button {
     }
     .container{
         width:80%;
+        height:550px;
+        background-color:red;
     }
 }
 
@@ -429,7 +431,7 @@ button {
      .container{
         border-radius: 20px;
          height:550px;
-         background-color:red;
+         
     }
     .formdiv{
         margin-left: 0;
