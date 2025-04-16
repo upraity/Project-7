@@ -14,10 +14,15 @@
   <div class="sidebar">
     <h2>Doctor Panel</h2>
     <div class="admin-profile">
-      <img src="../images/doc.png" alt="Doctor DP">
+      <img src="doc.png" alt="Doctor DP">
       <p>Doctor Name</p>
     </div>
-    <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+    <!-- Voice Command Button -->
+<button id="voiceBtn">
+  <i class="fas fa-microphone"></i>
+</button>
+
+    <a href="doctorpanel.html"><i class="fas fa-home"></i> Dashboard</a>
     <a href="docappointment.html" class="active"><i class="fas fa-calendar-check"></i> Appointments</a>
     <a href="docpatient.html"><i class="fas fa-procedures"></i> My Patients</a>
     <a href="docprescription.html"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</a>
@@ -118,6 +123,19 @@
     document.getElementById('darkModeToggle').addEventListener('change', function () {
       document.body.classList.toggle('dark', this.checked);
     });
+
+    if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark');
+  document.getElementById('darkModeToggle').checked = true;
+}
+
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+  // Save dark mode preference to localStorage
+  localStorage.setItem('darkMode', this.checked);
+});
   </script>
+  <script src="script1.js"></script>
 </body>
 </html>
