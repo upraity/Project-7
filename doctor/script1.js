@@ -50,7 +50,7 @@ recognition.onresult = (event) => {
     speakText("Logging out.");
     window.location.href = "doclogout.html";
 
-  } else if (transcript.includes("dark mode on") || transcript.includes("turn on dark mode") || transcript.includes("lon dark mode")) {
+  } else if (transcript.includes("dark mode on") || transcript.includes("turn on dark mode") || transcript.includes("on dark mode")) {
     darkToggle.checked = true;
     document.body.classList.add('dark');
     speakText("Dark mode enabled.");
