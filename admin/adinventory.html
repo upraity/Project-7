@@ -14,15 +14,20 @@
   <div class="sidebar">
     <h2>Admin Panel</h2>
     <div class="admin-profile">
-      <img src="../images/doc.png" alt="Admin DP">
+      <img src="doc.png" alt="Admin DP">
       <p>Admin Name</p>
     </div>
-    <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+     <!-- Voice Command Button -->
+<button id="voiceBtn">
+  <i class="fas fa-microphone"></i>
+</button>
+<span id="micIcon" class="mic"></span>
+    <a href="admin panel.html"><i class="fas fa-home"></i> Dashboard</a>
     <a href="addoctor.html"><i class="fas fa-user-md"></i> Doctors</a>
     <a href="adpetient.html"><i class="fas fa-procedures"></i> Patients</a>
     <a href="adappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
     <a href="adbilling.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
-    <a href="adinventory.html"><i class="fas fa-pills"></i> Inventory</a>
+    <a href="adinventory.html" class="active"><i class="fas fa-pills"></i> Inventory</a>
     <a href="adreport.html"><i class="fas fa-chart-line"></i> Reports</a>
     <a href="adsetting.html"><i class="fas fa-cog"></i> Settings</a>
   </div>
@@ -38,11 +43,27 @@
     </div>
      <!--clock conatiner end-->
 
+      <!-- Toggle Button start-->
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="darkModeToggle"> Dark Mode
+    </label>
+  </div>
+  <!-- Toggle Button end-->
+
+  <!-- Welcome section start-->
+  <div class="welcome-section">
+    <h2>Inventory Management-  <span class="hospital-name">DEESHUKA CARE HOSPITAL</span></h2>
+    <p>Below is the list of available medicines and medical supplies.</p>
+
+  </div>
+    <!-- Welcome section end-->
+
     <!--searchbox start-->
     <input type="text" placeholder="Search..." class="search-bar">
      <!--searchbox end-->
 
-     <h1 style="margin: 20px 0; font-family: 'Poppins', sans-serif;">Inventory Details</h1>
+     <h1>Inventory Details</h1>
 
     <!-- Add Inventory Button Start -->
 <button id="openInventoryFormBtn">+Add Inventory</button>
@@ -70,29 +91,33 @@
     </form>
   </div>
 </div>
-<table style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif;">
-  <thead style="background-color: #012d5e; color: white;">
+<!-- Inventory Modal end -->
+<!--table start-->
+<table class="inventory-table">
+  <thead>
     <tr>
-      <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Item</th>
-      <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Category</th>
-      <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Quantity</th>
-      <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Date Added</th>
-      <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Actions</th>
+      <th>Item</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Date Added</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody id="inventoryTableBody">
     <tr>
-      <td style="padding: 12px;">Syringe</td>
-      <td style="padding: 12px;">Medical Supplies</td>
-      <td style="padding: 12px;">150</td>
-      <td style="padding: 12px;">2025-04-12</td>
-      <td style="padding: 12px;">
-        <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
-        <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+      <td>Syringe</td>
+      <td>Medical Supplies</td>
+      <td>150</td>
+      <td>2025-04-12</td>
+      <td>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+<!--table end-->
+
 
   </div>
    <!--main end-->
@@ -110,6 +135,11 @@
 
 setInterval(updateTime, 1000);
 updateTime(); // initial call
+
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+});
+
   
    // Get elements
 const openInventoryFormBtn = document.getElementById('openInventoryFormBtn');
@@ -133,7 +163,19 @@ window.addEventListener('click', (event) => {
   }
 });
 
+if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark');
+  document.getElementById('darkModeToggle').checked = true;
+}
+
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+  // Save dark mode preference to localStorage
+  localStorage.setItem('darkMode', this.checked);
+});
+
   </script>
-  
+   <script src="script2.js"></script>
 </body>
 </html>
