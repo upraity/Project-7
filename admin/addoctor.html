@@ -14,11 +14,16 @@
   <div class="sidebar">
     <h2>Admin Panel</h2>
     <div class="admin-profile">
-      <img src="../images/doc.png" alt="Admin DP">
+      <img src="doc.png" alt="Admin DP">
       <p>Admin Name</p>
     </div>
-    <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
-    <a href="addoctor.html"><i class="fas fa-user-md"></i> Doctors</a>
+     <!-- Voice Command Button -->
+<button id="voiceBtn">
+  <i class="fas fa-microphone"></i>
+</button>
+<span id="micIcon" class="mic"></span>
+    <a href="adminpanel.html"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="addoctor.html" class="active"><i class="fas fa-user-md"></i> Doctors</a>
     <a href="adpatient.html"><i class="fas fa-procedures"></i> Patients</a>
     <a href="adappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
     <a href="adbilling.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
@@ -38,15 +43,30 @@
     </div>
      <!--clock conatiner end-->
 
+      <!-- Toggle Button start-->
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="darkModeToggle"> Dark Mode
+    </label>
+  </div>
+  <!-- Toggle Button start-->
+
+  <!-- Welcome section start-->
+  <div class="welcome-section">
+    <h2>Doctors Management-  <span class="hospital-name">DEESHUKA CARE HOSPITAL</span></h2>
+    <p>Below is the list of doctors currently working at Deeshuka Care Hospital.</p>
+  </div>
+   <!-- Welcome section end-->
+
       <!--searchbox start-->
       <input type="text" placeholder="Search..." class="search-bar">
       <!--searchbox end-->
 
-    <h1 style="margin: 20px 0; font-family: 'Poppins', sans-serif;">Doctor Management</h1>
+    <h1>Doctors</h1>
 
     <!--add doctor button start-->
 <button id="addDoctorBtn" class="add-doctor-btn">+ Add Doctor</button>
- <!--add doctor button start-->
+ <!--add doctor button end-->
 
 <!--modal form start-->
 <div id="doctorModal" class="modal">
@@ -70,43 +90,44 @@
 <!--modal form end-->
 
   <!--table start-->
-    <table style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif;">
-      <thead style=" background-color: #012d5e; color: white;">
-        <tr>
-          <th style="padding: 12px; text-align: left;  letter-spacing: 2px;">ID</th>
-          <th style="padding: 12px; text-align: left;  letter-spacing: 2px;">Name</th>
-          <th style="padding: 12px; text-align: left;  letter-spacing: 2px;">Specialization</th>
-          <th style="padding: 12px; text-align: left;  letter-spacing: 2px;">Contact</th>
-          <th style="padding: 12px; text-align: left;  letter-spacing: 2px;">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding: 12px;">1</td>
-          <td style="padding: 12px;">Dr. Ayesha Khan</td>
-          <td style="padding: 12px;">Cardiologist</td>
-          <td style="padding: 12px;">ayesha@example.com</td>
-          <td style="padding: 12px;">
-            <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
-            <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td style="padding: 12px;">2</td>
-          <td style="padding: 12px;">Dr. Amir Siddiqui</td>
-          <td style="padding: 12px;">Dermatologist</td>
-          <td style="padding: 12px;">amir@example.com</td>
-          <td style="padding: 12px;">
-            <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
-            <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!--table end-->
+<table class="doctor-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Specialization</th>
+      <th>Contact</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Dr. Ayesha Khan</td>
+      <td>Cardiologist</td>
+      <td>ayesha@example.com</td>
+      <td>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Dr. Amir Siddiqui</td>
+      <td>Dermatologist</td>
+      <td>amir@example.com</td>
+      <td>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!--table end-->
 
 </div>
 <!--main end-->
+
 </body>
 <script>
    function updateTime() {
@@ -117,6 +138,11 @@
 
 setInterval(updateTime, 1000);
 updateTime(); // initial call
+
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+});
+
 
   // Modal control
   const modal = document.getElementById("doctorModal");
@@ -138,6 +164,18 @@ updateTime(); // initial call
     }
   }
 
-    document.getElementById('patients-count').innerText = "150";
+  if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark');
+  document.getElementById('darkModeToggle').checked = true;
+}
+
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+  // Save dark mode preference to localStorage
+  localStorage.setItem('darkMode', this.checked);
+});
+
   </script>
+   <script src="script2.js"></script>
 </html>
