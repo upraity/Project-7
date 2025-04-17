@@ -14,16 +14,21 @@
   <div class="sidebar">
     <h2>Admin Panel</h2>
     <div class="admin-profile">
-      <img src="../images/doc.png" alt="Admin DP">
+      <img src="doc.png" alt="Admin DP">
       <p>Admin Name</p>
     </div>
-    <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+     <!-- Voice Command Button -->
+<button id="voiceBtn">
+  <i class="fas fa-microphone"></i>
+</button>
+<span id="micIcon" class="mic"></span>
+    <a href="adminpanel.html"><i class="fas fa-home"></i> Dashboard</a>
     <a href="addoctor.html"><i class="fas fa-user-md"></i> Doctors</a>
     <a href="adpatient.html"><i class="fas fa-procedures"></i> Patients</a>
     <a href="adappointment.html"><i class="fas fa-calendar-check"></i> Appointments</a>
     <a href="adbilling.html"><i class="fas fa-file-invoice-dollar"></i> Billing</a>
     <a href="adinventory.html"><i class="fas fa-pills"></i> Inventory</a>
-    <a href="adreport.html"><i class="fas fa-chart-line"></i> Reports</a>
+    <a href="adreport.html" class="active"><i class="fas fa-chart-line"></i> Reports</a>
     <a href="adsetting.html"><i class="fas fa-cog"></i> Settings</a>
   </div>
   <!--sidebar end-->
@@ -37,13 +42,26 @@
       <span id="current-time"></span>
     </div>
      <!--clock conatiner end-->
-    
-     <h1 style="margin: 20px 0; font-family: 'Poppins', sans-serif;">Hospital Reports</h1>
+     <!-- Toggle Button start-->
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="darkModeToggle"> Dark Mode
+    </label>
+  </div>
+  <!-- Toggle Button end-->
+
+  <!-- Welcome secton start-->
+  <div class="welcome-section">
+    <h2>Report Management-  <span class="hospital-name">DEESHUKA CARE HOSPITAL</span></h2>
+    <p>Below is the list of reports generated from hospital records.</p>
+
+  </div>
+  <!-- Welcome secton end-->
 
     <!--search and Export Controls start-->
 <div class="report-controls">
 
-  <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+  <input type="text" placeholder="Search..." class="search-bar">
 
   <div class="export-buttons">
     <button onclick="exportToExcel()">Export to Excel</button>
@@ -114,55 +132,55 @@
 </div>
 <!--modal popup end-->
 
- 
+<h2>Recent Appointments</h2>
 
 <!--report table start-->
 <div class="report-table-section">
-  <h2 style="font-family: 'Poppins', sans-serif; margin-bottom: 15px;">Recent Appointments</h2>
-  <table style="width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif;">
-    <thead style="background-color: #012d5e; color: white;">
+  <table class="report-table">
+    <thead>
       <tr>
-        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Patient</th>
-        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Doctor</th>
-        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Date</th>
-        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Status</th>
-        <th style="padding: 12px; text-align: left; letter-spacing: 2px;">Actions</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody id="reportTableBody">
       <tr>
-        <td style="padding: 12px;">Rahul Sharma</td>
-        <td style="padding: 12px;">Dr. Mehta</td>
-        <td style="padding: 12px;">2025-04-10</td>
-        <td style="padding: 12px;">Completed</td>
-        <td style="padding: 12px;">
-          <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
-          <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+        <td>Rahul Sharma</td>
+        <td>Dr. Mehta</td>
+        <td>2025-04-10</td>
+        <td>Completed</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
         </td>
       </tr>
       <tr>
-        <td style="padding: 12px;">Priya Verma</td>
-        <td style="padding: 12px;">Dr. Rao</td>
-        <td style="padding: 12px;">2025-04-09</td>
-        <td style="padding: 12px;">Pending</td>
-        <td style="padding: 12px;">
-          <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
-          <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+        <td>Priya Verma</td>
+        <td>Dr. Rao</td>
+        <td>2025-04-09</td>
+        <td>Pending</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
         </td>
       </tr>
       <tr>
-        <td style="padding: 12px;">Alok Singh</td>
-        <td style="padding: 12px;">Dr. Khan</td>
-        <td style="padding: 12px;">2025-04-08</td>
-        <td style="padding: 12px;">Cancelled</td>
-        <td style="padding: 12px;">
-          <button style="background-color: #f39c12; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Edit</button>
-          <button style="background-color: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 4px;">Delete</button>
+        <td>Alok Singh</td>
+        <td>Dr. Khan</td>
+        <td>2025-04-08</td>
+        <td>Cancelled</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
 
     <!--report table end-->
     </div>
@@ -180,15 +198,9 @@
 setInterval(updateTime, 1000);
 updateTime(); // initial call
 
-
-  // Search Filter
-  function filterTable() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const rows = document.querySelectorAll("tbody tr");
-    rows.forEach(row => {
-      row.style.display = row.innerText.toLowerCase().includes(input) ? "" : "none";
-    });
-  }
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+});
 
   // Export to Excel
   function exportToExcel() {
@@ -227,6 +239,18 @@ updateTime(); // initial call
       reportModal.style.display = "none";
     }
   }
+
+  if (localStorage.getItem('darkMode') === 'true') {
+  document.body.classList.add('dark');
+  document.getElementById('darkModeToggle').checked = true;
+}
+
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+  document.body.classList.toggle('dark', this.checked);
+  // Save dark mode preference to localStorage
+  localStorage.setItem('darkMode', this.checked);
+});
 </script>
 
 
