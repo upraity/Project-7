@@ -251,6 +251,9 @@ border-radius: 20px;
   body.dark h1 {
     color: #fff;
   }
+ body.dark h2 {
+    color: #fff;
+  }
   body.dark .welcome-section h2{
     color: #fff;
   }
