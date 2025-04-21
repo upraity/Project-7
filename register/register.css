@@ -126,7 +126,7 @@ nav ul li a {
 
 .container {
   width: 95%;
-  height: 550px;
+  height: 90%;
  background-color: white;
   padding: 20px;
   float: right;
@@ -139,7 +139,7 @@ nav ul li a {
 .tabs {
   display: flex;
   justify-content: space-between;
-  margin:30px 100px;
+  margin:30px 110px;
   letter-spacing: 3px;
   color: #001524;
 }
@@ -163,7 +163,7 @@ nav ul li a {
 }
 input, button {
   font-size: 15px;
-  width: 80%;
+  width: 70%;
   padding: 10px;
   margin: 4px 40px;
   border: 1px solid #ccc;
