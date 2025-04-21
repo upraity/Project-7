@@ -125,8 +125,8 @@ nav ul li a {
 }
 
 .container {
-  width: 95%;
-  height: 90%;
+  width: 90%;
+  height: 94%;
  background-color: white;
   padding: 20px;
   float: right;
@@ -138,8 +138,12 @@ nav ul li a {
 }
 .tabs {
   display: flex;
+  width: 60%;
   justify-content: space-between;
-  margin:30px 110px;
+  align-items: center;
+  margin-top:30px;
+  margin-bottom: 30px; 
+  margin-left: 195px;
   letter-spacing: 3px;
   color: #001524;
 }
@@ -155,6 +159,9 @@ nav ul li a {
   background: #023e8a;
   color: white;
 }
+h2{
+  letter-spacing: 1px;
+}
 .form {
   display: none;
 }
@@ -163,7 +170,7 @@ nav ul li a {
 }
 input, button {
   font-size: 15px;
-  width: 70%;
+  width: 60%;
   padding: 10px;
   margin: 4px 40px;
   border: 1px solid #ccc;
