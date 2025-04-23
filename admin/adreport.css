@@ -1,4 +1,4 @@
-body {
+/* body {
   display: flex;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -76,7 +76,7 @@ body {
 .sidebar a.active {
   background-color: #0056a3;
 }
-
+*/
 
 .main {
   margin-left: 260px;
